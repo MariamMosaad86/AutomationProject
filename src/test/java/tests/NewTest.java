@@ -2,8 +2,7 @@ package tests;
 
 import driverFactory.ChromeDriverFactory;
 import driverFactory.Driver;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,7 +18,6 @@ import java.time.Duration;
 public class NewTest {
 
     public Driver driver;
-    public Logger logger; // for logs
 
 
 
@@ -34,15 +32,12 @@ public class NewTest {
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 
-        // logs
-        logger = LogManager.getLogger(this.getClass());
-        logger.debug("debugging.....");
+
     }
 
 
     @Test(priority = 1)
     public void userCanRegisterSuccessfully() {
-        logger.info("*************** User Can Register **************");
         new HomePage(driver)
 
                 .checkThatUserNavigatedToHomePageSuccessfully()
@@ -56,14 +51,12 @@ public class NewTest {
                 .fillInregistrationform()
 //                .checkThatRegistrationTitleIsDisplayed()
                 .clickOnContinueButton();
-        logger.info("*************** User is Registered SuccessFully  **************");
 
         driver.get().manage().deleteAllCookies();
     }
 
     @Test(priority = 2, dependsOnMethods = "userCanRegisterSuccessfully")
     public void checkThatUserCanLoginSuccessfully() {
-        logger.info("*************** User Can Login And Navigate To HomePage **************");
 
         driver.get().navigate().to("https://automationexercise.com/login");
         new LoginSignupPage(driver)
@@ -73,14 +66,12 @@ public class NewTest {
                 .checkThatLogoutLinkIsDisplayed()
                 .checkThatDeleteAccountLinkIsDisplayed();
 
-        logger.info("*************** User is Logged In And Navigated To HomePage Successfully **************");
         driver.get().manage().deleteAllCookies();
 
     }
 
     @Test(priority = 3, dependsOnMethods = "checkThatUserCanLoginSuccessfully")
     public void checkThatUserCanLogoutSuccessfully() {
-        logger.info("*************** User Can Logout **************");
 
         driver.get().navigate().to("https://automationexercise.com/");
         new HomePage(driver)
@@ -95,7 +86,6 @@ public class NewTest {
                 .checkThatLoggedInAsUsernameEnteredIsDisplayed("Mariam")
                 .clickOnLogoutLink()
                 .checkThatUserNavigatedToLoginSignUpPage();
-        logger.info("*************** User is Logged out Successfully **************");
 
     }
 

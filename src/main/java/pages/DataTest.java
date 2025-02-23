@@ -1,5 +1,6 @@
 package pages;
 
+
 import com.github.javafaker.Faker;
 
 public class DataTest {
