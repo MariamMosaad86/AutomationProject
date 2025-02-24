@@ -1,6 +1,7 @@
 package pages;
 
 import driverFactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -25,50 +26,58 @@ public class LoginSignupPage {
     }
 
     /*********************************  Assertions  *****************************************************/
-
+    @Step("checkThatUserNavigatedToLoginSignUpPage")
     public LoginSignupPage checkThatUserNavigatedToLoginSignUpPage() {
         Assert.assertTrue(driver.get().getCurrentUrl().contains("/login"));
         return this;
     }
 
-    public LoginSignupPage checkThatNewUserSignUpTitleIsDisplayed(){
+    @Step("checkThatNewUserSignUpTitleIsDisplayed")
+    public LoginSignupPage checkThatNewUserSignUpTitleIsDisplayed() {
         Assert.assertTrue(driver.element().isDisplayed(signupFormTitle));
-        Assert.assertEquals(driver.element().getTextOf(signupFormTitle),"New User Signup!");
+        Assert.assertEquals(driver.element().getTextOf(signupFormTitle), "New User Signup!");
         return this;
     }
 
-    public LoginSignupPage checkThatLoginTitleIsDisplayed(){
+    @Step("checkThatLoginTitleIsDisplayed")
+    public LoginSignupPage checkThatLoginTitleIsDisplayed() {
         Assert.assertTrue(driver.element().isDisplayed(loginTitle));
-        Assert.assertEquals(driver.element().getTextOf(loginTitle),"Login to your account");
+        Assert.assertEquals(driver.element().getTextOf(loginTitle), "Login to your account");
         return this;
     }
+
     /*********************************  Actions  *****************************************************/
-
+    @Step("fillInLoginEmailField")
     public LoginSignupPage fillInLoginEmailField(String email) {
-        driver.element().fillFiled(loginEmail,email);
+        driver.element().fillFiled(loginEmail, email);
         return this;
     }
 
+    @Step("fillInLoginPasswordField")
     public LoginSignupPage fillInLoginPasswordField(String password) {
-        driver.element().fillFiled(loginPassword,password);
+        driver.element().fillFiled(loginPassword, password);
         return this;
     }
 
+    @Step("clickOnLoginButton")
     public HomePage clickOnLoginButton() {
         driver.element().click(loginButton);
         return new HomePage(driver);
     }
 
+    @Step("fillInNameField")
     public LoginSignupPage fillInNameField(String name) {
-        driver.element().fillFiled(signUpName,name);
+        driver.element().fillFiled(signUpName, name);
         return this;
     }
 
+    @Step("fillInSinUpEmailField")
     public LoginSignupPage fillInSinUpEmailField(String email) {
-        driver.element().fillFiled(signUpEmail,email);
+        driver.element().fillFiled(signUpEmail, email);
         return this;
     }
 
+    @Step("clickOnSignUpButton")
     public RegistrationPage clickOnSignUpButton() {
         driver.element().click(signUpButton);
         return new RegistrationPage(driver);

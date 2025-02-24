@@ -1,19 +1,11 @@
 package tests;
 
-import driverFactory.ChromeDriverFactory;
 import driverFactory.Driver;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import pages.DataTest;
 import pages.HomePage;
 import pages.LoginSignupPage;
-
-import java.time.Duration;
 
 public class NewTest {
 
@@ -48,7 +40,7 @@ public class NewTest {
                 .fillInSinUpEmailField(DataTest.fakerEmail)
                 .clickOnSignUpButton()
                 .checkThaRegistrationPageIsLoadedSuccessfully()
-                .fillInregistrationform()
+                .fillInRegistrationform()
 //                .checkThatRegistrationTitleIsDisplayed()
                 .clickOnContinueButton();
 

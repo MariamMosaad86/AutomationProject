@@ -1,6 +1,7 @@
 package pages;
 
 import driverFactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,7 +24,7 @@ public class RegistrationSuccessPage {
     }
 
     /*********************************  Assertions  *****************************************************/
-
+@Step("checkThatRegistrationTitleIsDisplayed")
     public RegistrationSuccessPage checkThatRegistrationTitleIsDisplayed() {
 //        wait.until(ExpectedConditions.urlContains("/account_created"));
 
@@ -36,6 +37,7 @@ public class RegistrationSuccessPage {
     }
 
     /*********************************  Actions  *****************************************************/
+    @Step("clickOnContinueButton")
     public HomePage clickOnContinueButton() {
         driver.element().click(continueButton);
         return new HomePage(driver);

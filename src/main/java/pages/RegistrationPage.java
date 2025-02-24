@@ -1,9 +1,8 @@
 package pages;
 
 import driverFactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 public class RegistrationPage {
@@ -41,8 +40,8 @@ public class RegistrationPage {
 
 
     /*********************************  Actions  *****************************************************/
-
-    public RegistrationSuccessPage fillInregistrationform() {
+    @Step("fillInRegistrationform")
+    public RegistrationSuccessPage fillInRegistrationform() {
 
         driver.element().fillFiled(passwordField, "Password@123");
         driver.element().selectByIndex(daysDropDown, 4);
