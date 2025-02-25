@@ -14,14 +14,11 @@ public class ContactUsTest {
 
     @BeforeClass
     @Parameters(value = {"browserName"})
-    public void setUp(@Optional("CHROME") String browserName) {
+    public void setUp(@Optional("EDGE") String browserName) {
         driver= new ThreadLocal<>(); //2
-        driver.set(new Driver()); //3
+        driver.set(new Driver(browserName)); //3
 ///        driver = new Driver(browserName);
 //        driver.get().browser().navigateToURL("https://automationexercise.com/"); //4
-
-
-
     }
 
     @Test
@@ -37,7 +34,6 @@ public class ContactUsTest {
                 .clickOnSubmitButton()
                 .checkThatContactUsFormIsSubmittedSuccessfully()
                 .clickOnHomeButton();
-
     }
 
 
