@@ -7,18 +7,28 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import utilities.ScreenShotManager;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
+
+import static utilities.properties.PropertiesManager.initializeProperties;
 
 public class TestNGListener implements ITestListener, IExecutionListener {
 
     @Override
     public void onExecutionStart() {
         System.out.println("************* Welcome to selenium Framework **************");
+        initializeProperties();
+
     }
 
     @Override
     public void onExecutionFinish() {
         System.out.println("Generating Report..........");
+        try {
+            Runtime.getRuntime().exec("reportGeneration.bat");
+        } catch (IOException e) {
+            System.out.println("Unable to generate Allure Report, may be there's an issue in the batch file/commands");
+        }
 
         System.out.println("******** End of Execution *******************");
     }

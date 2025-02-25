@@ -16,10 +16,9 @@ public class ContactUsTest {
     @Parameters(value = {"browserName"})
     public void setUp(@Optional("CHROME") String browserName) {
         driver= new ThreadLocal<>(); //2
-        driver.set(new Driver(browserName)); //3
+        driver.set(new Driver()); //3
 ///        driver = new Driver(browserName);
-        driver.get().browser().navigateToURL("https://automationexercise.com/"); //4
-        driver.get().browser().maximizeWindow();
+//        driver.get().browser().navigateToURL("https://automationexercise.com/"); //4
 
 
 
@@ -27,7 +26,6 @@ public class ContactUsTest {
 
     @Test
     public void ContactusTest() {
-//        logger.info("*************** User Can Contact Us **************");
 
         new HomePage(driver.get())
                 .checkThatUserNavigatedToHomePageSuccessfully()

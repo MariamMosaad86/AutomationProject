@@ -6,18 +6,28 @@ import listeners.webdriver.WebDriverListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 
+import static utilities.properties.PropertiesManager.webConfig;
+
 public class Driver {
 
 //    private static WebDriver driver;
 
     ThreadLocal<WebDriver> driver;
 
-    public Driver(String driverType) {
+    public Driver() {
+        String driverType = webConfig.getProperty("BrowserType");
         WebDriver undecoratedDriver = getDriver(driverType).startDriver();
         assert undecoratedDriver != null;
         driver = new ThreadLocal<>();
         driver.set(new EventFiringDecorator<>(org.openqa.selenium.WebDriver.class,
                 new WebDriverListener(undecoratedDriver)).decorate(undecoratedDriver));
+        System.out.println("Starting the execution via " + driverType + " driver");
+        driver.get().manage().window().maximize();
+
+        if (!webConfig.getProperty("BaseURL").isEmpty()) {
+            driver.get().navigate().to(webConfig.getProperty("BaseURL"));
+        }
+
 
 //        driver = new EventFiringDecorator<>(org.openqa.selenium.WebDriver.class,
 //                new WebDriverListener(undecoratedDriver)).decorate(undecoratedDriver);
@@ -38,7 +48,7 @@ public class Driver {
         }
     }
 
-    public  WebDriver get() {
+    public WebDriver get() {
         return driver.get();
     }
 

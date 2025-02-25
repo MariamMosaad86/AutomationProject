@@ -15,16 +15,8 @@ public class NewTest {
 
     @BeforeClass
     public void setUp() {
-        driver = new Driver("CHROME");
-
-        driver.browser().navigateToURL("https://automationexercise.com/");
-        driver.browser().maximizeWindow();
-
-
+        driver = new Driver();
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-
-
     }
 
 
