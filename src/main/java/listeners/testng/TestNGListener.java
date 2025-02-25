@@ -5,6 +5,7 @@ import driverFactory.Driver;
 import org.testng.IExecutionListener;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import utilities.AllureReportHelper;
 import utilities.ScreenShotManager;
 
 import java.io.IOException;
@@ -19,6 +20,11 @@ public class TestNGListener implements ITestListener, IExecutionListener {
     public void onExecutionStart() {
         System.out.println("************* Welcome to selenium Framework **************");
         initializeProperties();
+
+        if (ReportConfig.getProperty("CleanAllureReport").equalsIgnoreCase("true")){
+            AllureReportHelper.cleanAllureReport();
+            System.out.println("Allure Report Cleaned Successfully");
+        }
 
     }
 
